@@ -4,7 +4,7 @@
 https://sl0p3.github.io/CollegeLibrary/index.html
 
 
-ToDo :
-1.Store all data to localStorage
-2.Delete Book option
-3.Add scrollBar to the view
+ToDo :<br>
+1.Store all data to localStorage<br>
+2.Delete Book option<br>
+3.Add scrollBar to the view<br>
