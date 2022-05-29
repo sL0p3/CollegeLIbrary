@@ -36,8 +36,10 @@ Display.prototype.validate = function (book) {
 Display.prototype.show = function(type,displayMessage){
   document.getElementById('message').innerHTML = `<div class="alert alert-${type} alert-dismissible fade show" role="alert">
     <strong>Message : </strong> ${displayMessage}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>`
+  setTimeout(function() {
+      document.getElementById('message').innerHTML = ``
+  }, 2000);
 };
 
 // Add submit event listner to libraryForm.
@@ -68,7 +70,7 @@ function libraryFormSubmit(e) {
     display.clear();
     display.show('success',"Book added sucessfully");
   } else {
-    display.message('danger',"Sorry you cannot add this book.")
+    display.show('danger',"Sorry you cannot add this book.")
   }
 
   e.preventDefault(); // no default reload
