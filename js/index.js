@@ -12,7 +12,7 @@ function Display() {}
 
 // Add methods to display prototype
 Display.prototype.add = function (book) {
-  document.getElementById("tableBody");
+  let tableBody = document.getElementById("tableBody");
   let uiString = `<tr>
     <td>${book.name}</td>
     <td>${book.author}</td>
@@ -47,7 +47,6 @@ let libraryForm = document.getElementById("libraryForm");
 libraryForm.addEventListener("submit", libraryFormSubmit);
 
 function libraryFormSubmit(e) {
-  console.log("You have submitted the form");
   let name = document.getElementById("bookName").value;
   let author = document.getElementById("author").value;
   let fiction = document.getElementById("fiction");
