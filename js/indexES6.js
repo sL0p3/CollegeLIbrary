@@ -104,7 +104,7 @@ function showBooks(){
   }
   let html = "";
   booksObj.forEach(function(element,index){
-    html+= `<tr class ="bookbook" >
+    html+= `<tr class ="bookbook">
     <td>${element.name}</td>
     <td>${element.author}</td>
     <td>${element.type}</td>
@@ -145,17 +145,18 @@ function clearAll(){
 }
 
 
-let searchBtn = document.getElementById("searchBtn");
-searchBtn.addEventListener('input',function(){
-  let inpVal = searchBtn.value.toLowerCase();
-  let allBooks = document.getElementsByClassName("bookbook");
-  Array.from(allBooks).forEach(function(element,index){
-    let nameTxt = element.getElementsByTagName('td').innerText;
-    if(nameTxt.toLowerCase().includes(inpVal)){
-      element.style.display = "block";
-    }
-    else {
-      element.style.display= "none";
-    }
-  });
+let search = document.getElementById("searchTxt");
+search.addEventListener('input',function(){
+  alert("Search button under mantainance");
+//   let inpVal = search.value.toLowerCase();
+//   let allBooks = document.getElementsByClassName("bookbook");
+//   Array.from(allBooks).forEach(function(element,index){
+//     let nameTxt = element.getElementsByTagName('td')[0].innerText;
+//     if (nameTxt.toLowerCase().includes(inpVal)){
+//       element.style.display = "block";
+//     }
+//     else {
+//       element.style.display= "none";
+//     }
+//   });
 });
