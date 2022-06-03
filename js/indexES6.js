@@ -148,6 +148,7 @@ function clearAll(){
 let search = document.getElementById("searchTxt");
 search.addEventListener('input',function(){
   alert("Search button under mantainance");
+  search.value = "";
 //   let inpVal = search.value.toLowerCase();
 //   let allBooks = document.getElementsByClassName("bookbook");
 //   Array.from(allBooks).forEach(function(element,index){
