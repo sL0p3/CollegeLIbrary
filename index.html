@@ -31,7 +31,7 @@
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" id="searchTxt" type="search" placeholder="Search"
                     aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" id = "searchBtn" type="submit">Search</button>
             </form>
         </div>
     </nav>
@@ -91,6 +91,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Author</th>
                     <th scope="col">Type</th>
+                    <th scope="col"><button type="button" id = "clearAll" onclick="clearAll()" class="btn btn-danger">Clear All</button></th>
                 </tr>
             </thead>
             <tbody id = "tableBody">

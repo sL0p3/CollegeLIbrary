@@ -1,5 +1,5 @@
 console.log("ES6 version of College Library")
-
+showBooks()
 class Book{
     constructor(name, author, type){
         this.name= name ;
@@ -53,6 +53,15 @@ let libraryForm = document.getElementById("libraryForm");
 libraryForm.addEventListener("submit", libraryFormSubmit);
 
 function libraryFormSubmit(e) {
+
+  // For storage in local Storage.
+  let books = localStorage.getItem("books");
+  if (books== null){
+    booksObj = [];
+  }else{
+    booksObj = JSON.parse(books);
+  }
+  
   let name = document.getElementById("bookName").value;
   let author = document.getElementById("author").value;
   let fiction = document.getElementById("fiction");
@@ -68,15 +77,85 @@ function libraryFormSubmit(e) {
   }
   let book = new Book(name, author, type);
   console.log(book);
+  
+  
+  
 
   let display = new Display();
   if (display.validate(book)) {
+    booksObj.push(book);
+    localStorage.setItem("books",JSON.stringify(booksObj));
     display.add(book);
     display.clear();
     display.show('success',"Book added sucessfully");
   } else {
     display.show('danger',"Sorry you cannot add this book.")
   }
-
+  showBooks();
   e.preventDefault(); // no default reload
 }
+
+function showBooks(){
+  let books = localStorage.getItem("books");
+  if (books== null){
+    booksObj = [];
+  }else{
+    booksObj = JSON.parse(books);
+  }
+  let html = "";
+  booksObj.forEach(function(element,index){
+    html+= `<tr class ="bookbook" >
+    <td>${element.name}</td>
+    <td>${element.author}</td>
+    <td>${element.type}</td>
+    <td><button type="button" id = "${index}" onclick = "deleteBook(this.id)" class="btn btn-outline-danger">Remove book</button></td>
+</tr>`
+  })
+  let bookElem = document.getElementById("tableBody");
+  if (booksObj.length != 0){
+    bookElem.innerHTML= html;
+  }else{
+    bookElem.innerHTML= `<div class = "container my-3" ><h4>No books available</h4><div>`
+  }
+}
+
+function deleteBook(index){
+  if (confirm("Do you want to delete book permanently ?") == true) {
+    let books = localStorage.getItem("books");
+    if (books == null) {
+      booksObj = [];
+    } else {
+      booksObj = JSON.parse(books);
+    }
+    booksObj.splice(index, 1);
+    localStorage.setItem("books", JSON.stringify(booksObj));
+    showBooks();
+  } else {
+    showBooks();
+  }
+}
+
+function clearAll(){
+  if (confirm("Do you want to delete all books ?") == true){
+    localStorage.removeItem('books')
+    showBooks();
+  }else {
+    showBooks();
+  }
+}
+
+
+let searchBtn = document.getElementById("searchBtn");
+searchBtn.addEventListener('input',function(){
+  let inpVal = searchBtn.value.toLowerCase();
+  let allBooks = document.getElementsByClassName("bookbook");
+  Array.from(allBooks).forEach(function(element,index){
+    let nameTxt = element.getElementsByTagName('td').innerText;
+    if(nameTxt.toLowerCase().includes(inpVal)){
+      element.style.display = "block";
+    }
+    else {
+      element.style.display= "none";
+    }
+  });
+});
