@@ -115,7 +115,7 @@ function showBooks(){
   if (booksObj.length != 0){
     bookElem.innerHTML= html;
   }else{
-    bookElem.innerHTML= `<div class = "container my-3" ><h4>No books available</h4><div>`
+    bookElem.innerHTML= `<div class = "container my-3" ><h4>No books available . Use add book option to add books</h4><div>`
   }
 }
 
